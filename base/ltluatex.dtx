@@ -28,7 +28,7 @@
 \ProvidesFile{ltluatex.dtx}
 %</driver>
 %<*tex>
-[2021/12/27 v1.1x
+[2022/05/17 v1.1y
 %</tex>
 %<plain>  LuaTeX support for plain TeX (core)
 %<*tex>
@@ -1459,6 +1459,7 @@ local callbacktypes = callbacktypes or {
 luatexbase.callbacktypes=callbacktypes
 %    \end{macrocode}
 %
+% \changes{v1.1y}{2022/05/17}{shared\_callbacks added}
 % Sometimes multiple callbacks correspond to a single underlying engine level callback.
 % Then the engine level callback should be registered as long as at least one of these
 % callbacks is in use. This is implemented though a shared table which counts how many
@@ -1755,6 +1756,7 @@ local function add_to_callback(name, func, description)
     l = { }
     callbacklist[name] = l
 %    \end{macrocode}
+% \changes{v1.1y}{2022/05/17}{Adapted code for shared\_callbacks}
 % Handle count for shared engine callbacks.
 %    \begin{macrocode}
     local shared = shared_callbacks[name]
@@ -1804,6 +1806,7 @@ luatexbase.add_to_callback = add_to_callback
 % \changes{v1.0k}{2015/12/02}{adjust initialization of cb local (PHG)}
 % \changes{v1.0k}{2015/12/02}{Give more specific error messages (PHG)}
 % \changes{v1.1m}{2020/03/07}{Do not call callback.register for user-defined callbacks}
+% \changes{v1.1y}{2022/05/17}{Adapted code for shared\_callbacks}
 %   Remove a function from a callback. First check arguments.
 %    \begin{macrocode}
 local function remove_from_callback(name, description)
@@ -1949,6 +1952,7 @@ luatexbase.uninstall = uninstall
 % \end{macro}
 % \begin{macro}{mlist_to_hlist}
 % \changes{v1.1l}{2020/02/02}{|pre/post_mlist_to_hlist| added}
+% \changes{v1.1y}{2022/05/17}{Use shared\_callback system for pre/post/mlist_to_hlist}
 %   To emulate these callbacks, the ``real'' |mlist_to_hlist| is replaced by a
 %   wrapper calling the wrappers before and after.
 %    \begin{macrocode}
