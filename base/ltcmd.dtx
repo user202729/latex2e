@@ -3294,6 +3294,7 @@
 \cs_new_protected:Npn \@@_grab_v_aux_catcodes:
   {
     \cs_set_eq:NN \do \char_set_catcode_other:N
+    \do \^^I
     \dospecials
     \tex_endlinechar:D = `\^^M \scan_stop:
     \bool_if:NTF \l_@@_long_bool
